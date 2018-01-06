@@ -4,6 +4,7 @@ var APIKEY = '&api_key=o0mepy6dhm835wqRWR5D9FADRYhZNSGg'
 
 $(document).on('click', '.dank-button', showGifs);
 $(document).on('click', '#add-gif', addGifButton);
+$(document).on('click', '.generatedGif', animateGif);
 
 function createButtons () {
 	$('.button-div').empty();
@@ -14,7 +15,7 @@ function createButtons () {
 		gifButton.attr('data-name', giphArray[i]);
 		gifButton.text(giphArray[i]);
 		$('.button-div').append(gifButton);	
-		//console.log(gifButton.attr('data-name', giphArray[i]));
+		console.log(gifButton.attr('data-name', giphArray[i]));
 
 	}
 }
@@ -52,29 +53,35 @@ function showGifs (){
 
 		for (var i = 0; i < queryResult.length; i++) {
 			var newGifDiv = $('<div>');
-			newGifDiv.addClass('generatedGif');
 			var rating = $('<p>').text(queryResult[i].rating);
 			console.log(queryResult[i].rating);
 			newGifDiv.append(rating);
 			var newGifImage = $('<img>');
 			newGifImage.attr('src', queryResult[i].images.fixed_height_small_still.url);
+			newGifImage.attr('data-animate',queryResult[i].images.fixed_height_small.url);
 			newGifImage.attr('data-still', queryResult[i].images.fixed_height_small_still.url);
 			newGifImage.attr('data-state', 'still');
+			newGifImage.addClass('generatedGif');
 			newGifDiv.append(newGifImage);
-			$('.giph-display').append(newGifDiv);
+			$('.giph-display').prepend(newGifDiv);
 			} 
-	
-
 	});
-
-
-
 
 }
 
 
+ function animateGif (){
+    var state = $(this).attr('data-state');
+    if ( state == 'still'){
+        $(this).attr('src', $(this).data('animate'));
+        $(this).attr('data-state', 'animate');
+    }else{
+        $(this).attr('src', $(this).data('still'));
+        $(this).attr('data-state', 'still');
+    }
+}
+
 createButtons ();
-//showGifs ();
 
 
 
