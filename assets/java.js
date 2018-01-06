@@ -3,9 +3,10 @@ var giphArray = ['Athens', 'Sponge Bob','Homer Simpson', 'Crying Jordan', 'Juliu
 var APIKEY = '&api_key=o0mepy6dhm835wqRWR5D9FADRYhZNSGg'
 
 $(document).on('click', '.dank-button', showGifs);
+$(document).on('click', '#add-gif', addGifButton);
 
 function createButtons () {
-	//$('.button-div').empty();
+	$('.button-div').empty();
 	for (i = 0; i < giphArray.length; i++) {
 		var gifButton = $('<button>');
 		gifButton.addClass('btn bt-success');
@@ -16,6 +17,19 @@ function createButtons () {
 		//console.log(gifButton.attr('data-name', giphArray[i]));
 
 	}
+}
+
+function addGifButton (){
+	var gifSearch = $('.search-input').val().trim()
+	if ( gifSearch === ''){
+		return false;
+	}
+
+	giphArray.push(gifSearch);
+	createButtons();
+	$('.search-input').val('');
+	return false;
+	
 }
 
 function showGifs (){
