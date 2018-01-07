@@ -63,7 +63,7 @@ function showGifs (){
 			newGifImage.attr('data-state', 'still');
 			newGifImage.addClass('generated-Gif');
 			newGifDiv.append(newGifImage);
-			$('.giph-display').prepend(newGifDiv);
+			$('.giph-display').append(newGifDiv);
 			} 
 	});
 
