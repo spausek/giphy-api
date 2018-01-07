@@ -1,85 +1,70 @@
 $(document).ready(function(){
 var giphArray = ['Athens', 'Sponge Bob','Homer Simpson', 'Crying Jordan', 'Julius Caesar', 'Pokemon', 'Eagles', 'Doge', 'Cats'];
 var APIKEY = '&api_key=o0mepy6dhm835wqRWR5D9FADRYhZNSGg'
-
 $(document).on('click', '.dank-button', showGifs);
 $(document).on('click', '#add-gif', addGifButton);
-$(document).on('click', '.generatedGif', animateGif);
-
+$(document).on('click', '.generated-Gif', animateGif);
 function createButtons () {
-	$('.button-div').empty();
-	for (i = 0; i < giphArray.length; i++) {
-		var gifButton = $('<button>');
-		gifButton.addClass('btn bt-success');
-		gifButton.addClass('dank-button');
-		gifButton.attr('data-name', giphArray[i]);
-		gifButton.text(giphArray[i]);
-		$('.button-div').append(gifButton);	
-		console.log(gifButton.attr('data-name', giphArray[i]));
-
-	}
+    $('.button-div').empty();
+    for (i = 0; i < giphArray.length; i++) {
+        var gifButton = $('<button>');
+        gifButton.addClass('btn bt-success');
+        gifButton.addClass('dank-button');
+        gifButton.attr('data-name', giphArray[i]);
+        gifButton.text(giphArray[i]);
+        $('.button-div').append(gifButton); 
+        console.log(gifButton.attr('data-name', giphArray[i]));
+    }
 }
-
 function addGifButton (){
-	var gifSearch = $('.search-input').val().trim()
-	if ( gifSearch === ''){
-		return false;
-	}
-
-	giphArray.push(gifSearch);
-	createButtons();
-	$('.search-input').val('');
-	return false;
-	
+    var gifSearch = $('.search-input').val().trim()
+    if ( gifSearch === ''){
+        return false;
+    }
+    giphArray.push(gifSearch);
+    createButtons();
+    $('.search-input').val('');
+    return false;
+    
 }
-
 function showGifs (){
-	var dankGif = $(this).attr('data-name');
-	var APIKEY = '&api_key=o0mepy6dhm835wqRWR5D9FADRYhZNSGg';
-	var queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + dankGif + APIKEY + '&limit=10';
-	console.log(queryURL);
-	$.ajax({
-		url:queryURL,
-		method: 'GET'
-	})
-
-	.done(function(response){
-		console.log(response);
-		$('.giph-display').empty();
-		var  queryResult = response.data
-		if (queryResult === ''){
-			alert('Sorry, no dank gifs for the search');
-		}
-		var newRowDiv = null;
-		for (var i = 0; i < queryResult.length; i++) {
-			if (i == 0 || i % 5 === 0){
-		    newRowDiv = $('<div class="row">');
-			}
-			
-			var newGifDiv = $('<div>');
-			var rating = $('<p>').text('Rating ' + queryResult[i].rating);
-			console.log(queryResult[i].rating);
-			newGifDiv.append(rating);
-			var newGifImage = $('<img>');
-			newGifImage.attr('src', queryResult[i].images.fixed_height_small_still.url);
-			newGifImage.attr('data-animate',queryResult[i].images.fixed_height_small.url);
-			newGifImage.attr('data-still', queryResult[i].images.fixed_height_small_still.url);
-			newGifImage.attr('data-state', 'still');
-			newGifImage.addClass('generated-Gif');
-			newGifDiv.append(newGifImage);
-<<<<<<< HEAD
-			$('.giph-display').append(newGifDiv);
-			} 
-=======
-			newRowDiv.append(newGifDiv);
-			$('.giph-display').append(newRowDiv);
-		} 
->>>>>>> ac9594aefa039c5b2404a95d55f51cdd55e9bd76
-	});
-
+    var dankGif = $(this).attr('data-name');
+    var APIKEY = '&api_key=o0mepy6dhm835wqRWR5D9FADRYhZNSGg';
+    var queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + dankGif + APIKEY + '&limit=10';
+    console.log(queryURL);
+    $.ajax({
+        url:queryURL,
+        method: 'GET'
+    })
+    .done(function(response){
+        console.log(response);
+        $('.giph-display').empty();
+        var  queryResult = response.data
+        if (queryResult === ''){
+            alert('Sorry, no dank gifs for the search');
+        }
+        var newRowDiv = null;
+        for (var i = 0; i < queryResult.length; i++) {
+            if (i == 0 || i % 5 === 0){
+            newRowDiv = $('<div class="row">');
+            }
+            
+            var newGifDiv = $('<div>');
+            var rating = $('<p>').text('Rating ' + queryResult[i].rating);
+            console.log(queryResult[i].rating);
+            newGifDiv.append(rating);
+            var newGifImage = $('<img>');
+            newGifImage.attr('src', queryResult[i].images.fixed_height_small_still.url);
+            newGifImage.attr('data-animate',queryResult[i].images.fixed_height_small.url);
+            newGifImage.attr('data-still', queryResult[i].images.fixed_height_small_still.url);
+            newGifImage.attr('data-state', 'still');
+            newGifImage.addClass('generated-Gif');
+            newGifDiv.append(newGifImage);
+            newRowDiv.append(newGifDiv);
+            $('.giph-display').append(newRowDiv);
+        } 
+    });
 }
-
-
  function animateGif (){
     var state = $(this).attr('data-state');
     if ( state == 'still'){
@@ -90,12 +75,5 @@ function showGifs (){
         $(this).attr('data-state', 'still');
     }
 }
-
 createButtons ();
-
-
-
-
-
-
 });

@@ -23,4 +23,8 @@ input {
 	margin: 5px;
 }
 
-
+img {
+	padding-right: 10px;
+	height: 150px;
+	width: 150px;
+}
