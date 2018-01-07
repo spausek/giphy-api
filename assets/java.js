@@ -50,8 +50,12 @@ function showGifs (){
 		if (queryResult === ''){
 			alert('Sorry, no dank gifs for the search');
 		}
-
+		var newRowDiv = null;
 		for (var i = 0; i < queryResult.length; i++) {
+			if (i == 0 || i % 5 === 0){
+		    newRowDiv = $('<div class="row">');
+			}
+			
 			var newGifDiv = $('<div>');
 			var rating = $('<p>').text('Rating ' + queryResult[i].rating);
 			console.log(queryResult[i].rating);
@@ -63,8 +67,14 @@ function showGifs (){
 			newGifImage.attr('data-state', 'still');
 			newGifImage.addClass('generated-Gif');
 			newGifDiv.append(newGifImage);
+<<<<<<< HEAD
 			$('.giph-display').append(newGifDiv);
 			} 
+=======
+			newRowDiv.append(newGifDiv);
+			$('.giph-display').append(newRowDiv);
+		} 
+>>>>>>> ac9594aefa039c5b2404a95d55f51cdd55e9bd76
 	});
 
 }
