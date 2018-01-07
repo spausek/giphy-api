@@ -30,7 +30,7 @@ function addGifButton (){
 function showGifs (){
     var dankGif = $(this).attr('data-name');
     var APIKEY = '&api_key=o0mepy6dhm835wqRWR5D9FADRYhZNSGg';
-    var queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + dankGif + APIKEY + '&limit=10';
+    var queryURL = 'https://api.giphy.com/v1/gifs/search?q=' + dankGif + APIKEY + '&limit=10';
     console.log(queryURL);
     $.ajax({
         url:queryURL,
