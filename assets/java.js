@@ -1,5 +1,5 @@
 $(document).ready(function(){
-var giphArray = ['Athens', 'Sponge Bob','Homer Simpson', 'Crying Jordan', 'Julius Caesar', 'Pokemon', 'Gaddafi'];
+var giphArray = ['Athens', 'Sponge Bob','Homer Simpson', 'Crying Jordan', 'Julius Caesar', 'Pokemon', 'Eagles', 'Doge', 'Cats'];
 var APIKEY = '&api_key=o0mepy6dhm835wqRWR5D9FADRYhZNSGg'
 
 $(document).on('click', '.dank-button', showGifs);
@@ -36,7 +36,7 @@ function addGifButton (){
 function showGifs (){
 	var dankGif = $(this).attr('data-name');
 	var APIKEY = '&api_key=o0mepy6dhm835wqRWR5D9FADRYhZNSGg';
-	var queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + dankGif + APIKEY;
+	var queryURL = 'http://api.giphy.com/v1/gifs/search?q=' + dankGif + APIKEY + '&limit=10';
 	console.log(queryURL);
 	$.ajax({
 		url:queryURL,
@@ -53,7 +53,7 @@ function showGifs (){
 
 		for (var i = 0; i < queryResult.length; i++) {
 			var newGifDiv = $('<div>');
-			var rating = $('<p>').text(queryResult[i].rating);
+			var rating = $('<p>').text('Rating ' + queryResult[i].rating);
 			console.log(queryResult[i].rating);
 			newGifDiv.append(rating);
 			var newGifImage = $('<img>');
@@ -82,6 +82,7 @@ function showGifs (){
 }
 
 createButtons ();
+
 
 
 
