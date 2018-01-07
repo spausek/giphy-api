@@ -1,0 +1,33 @@
+.jumbotron {
+	text-align: center;
+	background: url(./images/background.jpg);
+	color: white;
+	 
+
+}
+
+h1 {
+	font-size: 130px;
+}
+
+.gif-search {
+	padding: 20px;
+}
+.dank-button {
+	margin: 5px;
+	background: pink;
+
+}
+
+input {
+	margin: 5px;
+}
+
+.giph-display {
+	position: absolute;
+    right: 0;
+    top: 450px;
+    display: inline-block;
+    width: 500px;
+}
+

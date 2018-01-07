@@ -61,7 +61,7 @@ function showGifs (){
 			newGifImage.attr('data-animate',queryResult[i].images.fixed_height_small.url);
 			newGifImage.attr('data-still', queryResult[i].images.fixed_height_small_still.url);
 			newGifImage.attr('data-state', 'still');
-			newGifImage.addClass('generatedGif');
+			newGifImage.addClass('generated-Gif');
 			newGifDiv.append(newGifImage);
 			$('.giph-display').prepend(newGifDiv);
 			} 
